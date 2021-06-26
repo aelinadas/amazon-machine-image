@@ -1,0 +1,40 @@
+version: 2.1
+jobs:
+  validate:
+    docker:
+      - image: hashicorp/packer:1.1.1
+    working_directory: ~/packer
+    steps:
+      - checkout
+      - run:
+          name: Validate base
+          command: packer validate ./ami.json
+
+  build-ami:
+    docker:
+      - image: hashicorp/packer:1.1.1
+    working_directory: ~/packer
+    
+    steps:
+      - checkout
+      - attach_workspace:
+          at: ~/packer
+      - run:
+          name: Build AMI
+          command: packer build ./ami.json
+          no_output_timeout: 30m
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - validate  
+      - build-ami:
+          requires:
+            - validate
+          filters:
+             branches:
+               ignore:
+                - /a.*/
+               only: master
+               
