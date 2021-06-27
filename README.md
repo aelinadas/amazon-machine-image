@@ -3,8 +3,7 @@
 ### PROJECT DESCRIPTION
 AMI stands for Amazon Machine Image i.e. a special type of virtual appliance that is used to create a virtual machine within the Amazon Elastic Compute Cloud. It serves as the basic unit of deployment for services delivered using EC2.
 
-I have a web application to be deployed to cloud. This repository contain configuration for building Custon API for deploying and running my Online Bookstore i.e.
-https://github.com/aelinadas/bookstore
+I have a web application to be deployed to cloud. This repository contain configuration for building Custon API for deploying and running webapp [Bookstore](https://github.com/aelinadas/bookstore)
 
 The AMI is built and made available on the AWS accounts by using CircleCI pipeline. 
 The CircleCI pipeline leverages Packer to validate and build AMI.
